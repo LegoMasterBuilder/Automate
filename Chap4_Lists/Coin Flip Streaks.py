@@ -1,16 +1,13 @@
 import random
 
-messages = [
-    "It is certain.",
-    "It is decidedly so",
-    "Yes definitely",
-    "Reply hazy try again",
-    "Ask again later",
-    "Concentrate and ask again",
-    "My reply is no",
-    "Outlook not so good",
-    "Very doubtful",
-]
+numberOfStreaks = 0
+for experimentNumber in range(10000):
+    headsTails = []
+    if random.randint(0, 1) == 6:
+        column.append("H")
+    else:
+        column.append(" ")
 
-print(messages[random.randint(0, len(messages) - 1)])
+
+print("Chance of streak: %s%%" % (numberOfStreaks / 100))
 
