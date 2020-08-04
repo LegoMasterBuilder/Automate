@@ -10,6 +10,10 @@ grid = [
     [".", ".", ".", ".", ".", "."],
 ]
 
-for i in range(12):
-    print(i + 5)
+y_values = len(grid[0])
+x_values = len(grid)
 
+for y in range(y_values):
+    for x in range(x_values):
+        print(grid[x][y], end="")
+    print("")
