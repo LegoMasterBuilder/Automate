@@ -1,5 +1,4 @@
 # Collatz Sequence
-print("cats", "dogs", "burger", sep=" a ")
 print("Enter Number: ")  # instruction for user to enter a number
 
 # created function collatz is to determine odd/even
