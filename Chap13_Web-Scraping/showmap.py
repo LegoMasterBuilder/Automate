@@ -4,7 +4,10 @@ import webbrowser, sys
 if len(sys.argv) > 1:
     # Get address from command line.
     address = ' '.join(sys.argv[1:])
+else:
+    # Get address from clipboard.
+    address = " "
 
-# TODO: Get address from clipboard.
-
+print(address)
 # TODO: Open the web browser.
+webbrowser.open('https://www.openstreetmap.org/search?query=' + address)
