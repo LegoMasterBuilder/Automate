@@ -4,11 +4,34 @@
 # the game at https://play2048.co and keep sending up, right, down, and left 
 # keystrokes to automatically play the game.
 
-from playwright.sync_api import sync_playwright
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
-playwright = sync_playwright().start()
-browser = playwright.firefox.launch(headless=False, slow_mo=50)
-page = browser.new_page()
-page.goto('https://play2048.co')
-page.locator('html').press('End')
+# fire up chrome browser
+browser = webdriver.Chrome()
+print("Loading...")
 
+# open the play2048.co link
+browser.get('https://play2048.co')
+print("Page successfully loaded!")
+
+# Locate the 2048 header
+elems = browser.find_element(By.TAG_NAME, 'h1')
+# locate the html tag for the keystrokes
+html_elem = browser.find_element(By.TAG_NAME, 'html')
+
+# Activate keystrokes
+print("Game Started.")
+while elems.is_displayed():
+    # up keystroke
+    html_elem.send_keys(Keys.UP)
+    # right keystroke
+    html_elem.send_keys(Keys.RIGHT)
+    # down keystroke
+    html_elem.send_keys(Keys.DOWN)
+    # left keystroke
+    html_elem.send_keys(Keys.LEFT)
+
+# end game after losing
+print("Game Over.")
