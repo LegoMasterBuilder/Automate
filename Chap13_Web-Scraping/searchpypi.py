@@ -6,10 +6,10 @@ print('Searching...')   # Display text while downloading the search results page
 res = requests.get('https://pypi.org/search/?q=' + ' '.join(sys.argv[1:]))
 res.raise_for_status()
 
-# TODO: Retrieve top search result links.
+# Retrieve top search result links.
 soup = bs4.BeautifulSoup(res.text, 'parser.html')
-
-# TODO: Open a browser tab for each result.
+ 
+# Open a browser tab for each result.
 link_elems = soup.select('.package-snippet')
 num_open = min(5, len(link_elems))
 for i in range(num_open):
