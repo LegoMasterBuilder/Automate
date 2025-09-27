@@ -14,36 +14,32 @@ try:
     # Set row N and M blank rows.
     N, M = int(sys.argv[1]), int(sys.argv[2])
     spreadsheet = sys.argv[3]
-    # N = 3
-    # M = 2
-    # spreadsheet = './Automate_the_Boring_Stuff_3e_onlinematerials/example3.xlsx'
 
+    # Open existing workbook
     wb1 = openpyxl.load_workbook(spreadsheet)
     sheetOrig = wb1['Sheet1']
+
+    # Generate new workbook.
     wb2 = openpyxl.Workbook()
     sheetNew = wb2['Sheet']
 
-    for row in range(1, N):
+    # Iterate through workbook.
+    for row in range(1, sheetOrig.max_row + M + 1):
         for col in range(1, sheetOrig.max_column + 1):
-            column_letter = str(get_column_letter(col))
-            row_number = str(row)
-            cell_loc = column_letter + row_number
-            if row == N:
-                sheetNew[cell_loc] = " "
-                break
-            else: 
-                sheetNew[cell_loc] = sheetOrig[cell_loc].value
-
-    for row in range(N, sheetOrig.max_row + M+1):
-        for col in range(1, sheetOrig.max_column + 1):
+            # Extract Column and Row Numbers.
             column_letter = str(get_column_letter(col))
             row_number_old = str(row)
             row_number_new = str(row + M)
+
+            # Extract cell locations.
             cell_loc_old = column_letter + row_number_old
             cell_loc_new = column_letter + row_number_new
-            sheetNew[cell_loc_new] = sheetOrig[cell_loc_old].value
-            
 
+            while row in range(N, N+M):
+                sheetNew[cell_loc_new] = " "
+            else: 
+                sheetNew[cell_loc_new] = sheetOrig[cell_loc_old].value
+            
     # Save changes to a .xlsx file.
     wb2.save('editBlank.xlsx')
 
