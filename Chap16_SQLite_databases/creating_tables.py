@@ -81,3 +81,8 @@ conn.execute('DROP INDEX idx_name')
 conn.execute('SELECT name FROM sqlite_schema WHERE type = "index" AND tbl_name = "cats"').fetchall()
 
 # Updating Data in Database
+conn.execute('SELECT * FROM cats WHERE rowid = 1').fetchall() # black color hair
+conn.execute('UPDATE cats SET fur = "gray tabby" WHERE rowid = 1')
+conn.execute('SELECT * FROM cats WHERE rowid = 1').fetchall() # gray tabby hair color
+# NOTE: always include the WHERE clause when UPDATE is used.
+
